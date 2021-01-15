@@ -17813,6 +17813,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
+  console.log(modalState);
 });
 
 /***/ }),
@@ -17998,7 +17999,9 @@ var forms = function forms(state) {
       if (item.getAttribute('data-calc') === "end") {
         for (var key in state) {
           formData.append(key, state[key]);
-        }
+        } // *** modalState почистить
+        // *** проверить все ли формы заполнены
+
       }
 
       postData('assets/server.php', formData).then(function (res) {
@@ -18009,14 +18012,13 @@ var forms = function forms(state) {
       }).finally(function () {
         clearInputs();
         setTimeout(function () {
-          statusMessage.remove();
-        }, 5000); // *** Close Modal Window
-        // document.querySelector('.popup_form').style.display = 'none';
-        // document.body.style.overflow = '';
-        // *** modalState почистить
-        //state = {};
-        // *** 
-        // проверить все ли формы заполнены
+          statusMessage.remove(); // *** Close Modal Window
+
+          if (item.getAttribute('data-calc') === 'end') {
+            document.querySelector('.popup_calc_end').style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        }, 5000);
       });
     });
   });

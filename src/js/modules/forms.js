@@ -41,6 +41,8 @@ const forms =(state) => {
                 for (let key in state) {
                     formData.append(key, state[key]);
                 }
+                // *** modalState почистить
+                // *** проверить все ли формы заполнены
             }
 
             postData('assets/server.php', formData)
@@ -53,14 +55,12 @@ const forms =(state) => {
                     clearInputs();
                     setTimeout(() => {
                         statusMessage.remove();
+                        // *** Close Modal Window
+                        if(item.getAttribute('data-calc') === 'end') {
+                            document.querySelector('.popup_calc_end').style.display = 'none';
+                            document.body.style.overflow = '';
+                        }
                     }, 5000);
-                    // *** Close Modal Window
-                    // document.querySelector('.popup_form').style.display = 'none';
-                    // document.body.style.overflow = '';
-                    // *** modalState почистить
-                    //state = {};
-                    // *** 
-                    // проверить все ли формы заполнены
                 });
 
         });
