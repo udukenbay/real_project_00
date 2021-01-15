@@ -32,7 +32,7 @@ const timer = (id, deadline) => {
               timeInterval = setInterval(updateClock, 1000);
         
         updateClock();
-        
+         
         function updateClock () {
             const t = getTimeRemaining(endTime);
 
